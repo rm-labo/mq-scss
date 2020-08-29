@@ -1,9 +1,9 @@
 {
-  "name": "demo",
+  "name": "docs",
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "link": "cd ../ && npm link && cd ./demo && npm link @rm-labo/mq-scss",
+    "link": "cd ../ && npm link && cd ./docs && npm link @rm-labo/mq-scss",
     "build": "npm run lintfix && NODE_ENV=production webpack --mode production && npm run clean:map",
     "dev": "NODE_ENV=development webpack --watch --mode development",
     "clean:map": "rimraf ./dist/**/*.map",

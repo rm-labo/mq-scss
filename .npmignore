@@ -2,7 +2,7 @@
 .stylelintrc.json
 .gitignore
 src/
-demo/
+docs/
 tsconfig.json
 webpack.config.js
 jest.config.js
