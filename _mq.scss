@@ -1,0 +1,191 @@
+/*!
+ * mq-scss
+ * Copyright (c) 2020 rm-labo
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+
+ $mq-breakpoints: (
+  sm: 600px,
+  md: 900px,
+  lg: 1200px,
+  xl: 1800px
+) !default;
+
+$mq-breakpoints-default-key: 'md' !default;
+
+@mixin mqWidthUp($bp: $mq-breakpoints-default-key) {
+  $media: null;
+  @if type-of($bp) == number {
+    $media: $bp;
+  } @else {
+    $media: map-get($mq-breakpoints, $bp);
+  }
+  @media (min-width: $media) {
+    @content;
+  }
+}
+
+@mixin mqWidthDown($bp: $mq-breakpoints-default-key) {
+  $media: null;
+  @if type-of($bp) == number {
+    $media: $bp - 1px;
+  } @else {
+    $media: map-get($mq-breakpoints, $bp) - 1px;
+  }
+  @media (max-width: $media) {
+    @content;
+  }
+}
+
+@mixin mqWidthBetween($bp1, $bp2) {
+  $size1: null;
+  $size2: null;
+  $media: null;
+
+  @if type-of($bp1) == number {
+    $size1: $bp1;
+  } @else {
+    $size1: map-get($mq-breakpoints, $bp1);
+  }
+
+  @if type-of($bp2) == number {
+    $size2: $bp2;
+  } @else {
+    $size2: map-get($mq-breakpoints, $bp2);
+  }
+
+  @if $size1 <= $size2 {
+    @media ( min-width: #{$size1} ) and ( max-width: #{$size2 - 1px } ) {
+      @content;
+    }
+  } @else {
+    @media ( min-width: #{$size2} ) and ( max-width: #{$size1 - 1px } ) {
+      @content;
+    }
+  }
+}
+
+@mixin mqHeightUp($bp: $mq-breakpoints-default-key) {
+  $media: null;
+  @if type-of($bp) == number {
+    $media: $bp;
+  } @else {
+    $media: map-get($mq-breakpoints, $bp);
+  }
+  @media (min-height: $media) {
+    @content;
+  }
+}
+
+@mixin mqHeightDown($bp: $mq-breakpoints-default-key) {
+  $media: null;
+  @if type-of($bp) == number {
+    $media: $bp - 1px;
+  } @else {
+    $media: map-get($mq-breakpoints, $bp) - 1px;
+  }
+  @media (max-height: $media) {
+    @content;
+  }
+}
+
+@mixin mqHeightBetween($bp1, $bp2) {
+  $size1: null;
+  $size2: null;
+  $media: null;
+
+  @if type-of($bp1) == number {
+    $size1: $bp1;
+  } @else {
+    $size1: map-get($mq-breakpoints, $bp1);
+  }
+
+  @if type-of($bp2) == number {
+    $size2: $bp2;
+  } @else {
+    $size2: map-get($mq-breakpoints, $bp2);
+  }
+
+  @if $size1 <= $size2 {
+    @media ( min-height: #{$size1} ) and ( max-height: #{$size2 - 1px } ) {
+      @content;
+    }
+  } @else {
+    @media ( min-height: #{$size2} ) and ( max-height: #{$size1 - 1px } ) {
+      @content;
+    }
+  }
+}
+
+@mixin mqUp($bp: $mq-breakpoints-default-key) {
+  @include mqWidthUp($bp) {
+    @content;
+  }
+}
+
+@mixin mqDown($bp: $mq-breakpoints-default-key) {
+  @include mqWidthDown($bp) {
+    @content;
+  }
+}
+
+@mixin mqBetween($bp1, $bp2) {
+  @include mqWidthBetween($bp1, $bp2) {
+    @content;
+  }
+}
+
+@mixin mq-up($bp: $mq-breakpoints-default-key) {
+  @include mqWidthUp($bp) {
+    @content;
+  }
+}
+
+@mixin mq-down($bp: $mq-breakpoints-default-key) {
+  @include mqWidthDown($bp) {
+    @content;
+  }
+}
+
+@mixin mq-between($bp1, $bp2) {
+  @include mqWidthBetween($bp1, $bp2) {
+    @content;
+  }
+}
+
+@mixin mq-width-up($bp: $mq-breakpoints-default-key) {
+  @include mqWidthUp($bp) {
+    @content;
+  }
+}
+
+@mixin mq-width-down($bp: $mq-breakpoints-default-key) {
+  @include mqWidthDown($bp) {
+    @content;
+  }
+}
+
+@mixin mq-width-between($bp1, $bp2) {
+  @include mqWidthBetween($bp1, $bp2) {
+    @content;
+  }
+}
+
+@mixin mq-height-up($bp: $mq-breakpoints-default-key) {
+  @include mqHeightUp($bp) {
+    @content;
+  }
+}
+
+@mixin mq-height-down($bp: $mq-breakpoints-default-key) {
+  @include mqHeightDown($bp) {
+    @content;
+  }
+}
+
+@mixin mq-height-between($bp1, $bp2) {
+  @include mqHeightBetween($bp1, $bp2) {
+    @content;
+  }
+}

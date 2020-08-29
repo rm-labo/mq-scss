@@ -1,0 +1,133 @@
+.debug-bar {
+  position: fixed;
+  z-index: 1000;
+  bottom: 1em;
+  left: 1em;
+  right: 1em;
+  padding: 1em 1em;
+  background: $color-text;
+  color: $color-bg;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 300;
+  box-shadow: 20px 20px 35px 0px rgba($color-text, 0.5);
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .text {
+    letter-spacing: 0.05em;
+  }
+
+  .number {
+    font-size: 2.0rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+  }
+
+}
+
+.debug-box-wrap {
+  margin: 1em 0 0 0;
+  padding: 2em;
+  text-align: center;
+  background: rgba($color-text, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  margin: auto;
+  font-size: 1.2rem;
+  width: 130px;
+  height: 130px;
+  background: $color-text;
+  border-radius: 1em;
+  text-align: center;
+  box-shadow: 20px 20px 35px 0px rgba($color-text, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    display: inline-block;
+    color: white;
+  }
+
+  &#box-mq-up {
+    background: red;
+    @include mqUp('sm') { background: orange; }
+    @include mqUp('md') { background: green; }
+    @include mqUp('lg') { background: blue; }
+    @include mqUp('xl') { background: purple; }
+  }
+
+  &#box-mq-down {
+    background: red;
+    @include mqDown('xl') { background: purple; }
+    @include mqDown('lg') { background: blue; }
+    @include mqDown('md') { background: green; }
+    @include mqDown('sm') { background: orange; }
+  }
+
+  &#box-mq-between {
+    background: red;
+    @include mqBetween('sm', 'md') { background: green; }
+    @include mqBetween('lg', 'xl') { background: blue; }
+  }
+
+  &#box-mq-up-df {
+    background: red; 
+    @include mqUp() { background: green;}
+  }
+  &#box-mq-down-df {
+    background: red; 
+    @include mqDown() { background: green;}
+  }
+
+  &#box-mq-up-626 {
+    background: red;
+    @include mqUp(626px) { background: green; } 
+  }
+
+  &#box-mq-down-782 {
+    background: red;
+    @include mqDown(782px) { background: green; } // 782px and up 
+  }
+
+  &#box-mq-bw-l-n {
+    background: red; // ~ 599px , 1600px  ~
+    @include mqBetween('sm', 1600px) { background: green;} // 600px ~ 1599px 
+  }
+
+  &#box-mq-bw-n-n {
+    background: red; // ~ 849px , 1234px ~
+    @include mqBetween(1234px, 850px) { background: green;} // 850px ~ 1233px 
+  }
+
+  &#box-mq-h-up {
+    background: red;
+    @include mqHeightUp('sm') { background: orange; }
+    @include mqHeightUp(900px) { background: green; }
+    @include mqHeightUp('lg') { background: blue; }
+    @include mqHeightUp('xl') { background: purple; }
+  }
+
+  &#box-mq-h-down {
+    background: red;
+    @include mqHeightDown('xl') { background: purple; }
+    @include mqHeightDown(1200px) { background: blue; }
+    @include mqHeightDown('md') { background: green; }
+    @include mqHeightDown('sm') { background: orange; }
+  }
+
+  &#box-mq-h-bw {
+    background: red;
+    @include mqHeightBetween('sm', 'md') { background: green; }
+    @include mqHeightBetween('lg', 'xl') { background: blue; }
+  }
+
+}
