@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./scss/main.scss" />
+    <title>mq-scss</title>
+  </head>
+  <body>
+    <div class="debug-bar">
+      <span class="text">window [ width : </span>
+      <span class="number" data-debug-window-width></span>
+      <span class="text"> px / height : </span>
+      <span class="number" data-debug-window-height></span>
+      <span class="text"> px ] </span>
+    </div>
+
+    <section class="main-section">
+      <h1 class="main-section__title">mq-scss</h1>
+      <p class="main-section__text">Media Queries Helper Functions for scss.</p>
+      <a class="main-section__btn" href="https://www.npmjs.com/package/@rm-labo/mq-scss" target="_blank">
+        <span><i class="fab fa-npm"></i></span>
+        <span>
+          <small>GETTING STARTED</small>
+        </span>
+      </a>
+
+      <p class="main-section__text">The latest source code is available on <a href="https://github.com/rm-labo/mq-scss">GitHub</a>.</p>
+    </section>  
+
+    <section class="section">
+      <div class="wrapper">
+        <p class="section__text">
+          Javascript version of the package with the similar concept is <a href="https://github.com/rm-labo/mq-js">here</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section__title">Install</h2>
+      <div class="wrapper">
+<pre><code class="language-bash">$ npm i -D @rm-labo/mq-scss</code></pre>
+
+      <p class="section__text">you can import your scss project root.</p>
+
+<pre><code class="language-scss">// scss
+@import 'path/to/node_modules/@rm-labo/mq-scss/_mq.scss';</code></pre>
+
+      <p class="section__text">If your build tool processes CSS from your JavaScript entry point, <br>you can also import the stylesheet directly as modules</p>
+
+<pre><code class="language-javascript">// js
+import '@rm-labo/mq-scss/_mq.scss'</code></pre>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section__title">Usage</h2>
+      <div class="wrapper">
+
+        <p class="section__text">Three @mixins are available.<br>You can use your favorite 'camel case' or 'kebab case'.</p>
+        <pre><code class="language-scss">// camelCase
+@include mqUp($bp) {}
+@include mqDown($bp) {}
+@include mqBetween($bp1, $bp2) {}
+
+// kebab-case (same as camelCase)
+@include mq-up($bp) {}
+@include mq-down($bp) {}
+@include mq-between($bp1, $bp2) {}
+</code></pre>
+
+
+        <table class="table-basic">
+          <thead>
+            <tr>
+              <th>arguments</th>
+              <th>type</th>
+              <th>required</th>
+              <th>default value</th>
+              <th>description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th style="width:15%;">$bp</th>
+              <td style="width:10%;">string|number</td>
+              <td style="width:10%;"><code>false</code></td>
+              <td style="width:15%;"><code>md</code></td>
+              <td style="width:50%;"><code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code>, Free px number (ex. 1280px)</td>
+            </tr>
+            <tr>
+              <th>$bp1</th>
+              <td>string|number</td>
+              <td><code>true</code></td>
+              <td>-</td>
+              <td><code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code>, Free px number (ex. 1280px)</td>
+            </tr>
+            <tr>
+              <th>$bp2</th>
+              <td>string|number</td>
+              <td><code>true</code></td>
+              <td>-</td>
+              <td><code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code>, Free px number (ex. 1280px)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <section class="sub-section">
+          <h3 class="sub-section__title">default setting values</h3>
+          <pre><code class="language-scss">$mq-breakpoints: (
+  sm: 600px,
+  md: 900px, // default
+  lg: 1200px,
+  xl: 1800px
+) !default;
+
+$mq-breakpoints-default-key: 'md' !default;
+</code></pre>
+        </section>
+
+        <section class="sub-section">
+          <h3 class="sub-section__title">override default setting values</h3>
+          <p class="section__text">
+            You can overwrite <code>$mq-breakpoints-default-key</code> and <code>$mq-breakpoints</code>.<br>
+            Declare before <code>@import '_mq.scss'</code>. <br>
+            Specify one of the property names of <code>$mq-breakpoints</code> for <code>$mq-breakpoints-default-key</code>.
+          </p>
+          <pre><code class="language-scss">// override example
+$mq-breakpoints: (
+  micro: 320px,
+  small: 620px,
+  medium: 840px, // default
+  large: 1280px,
+  extra: 1900px,
+  // .. Add as many as you like ..
+);
+
+$mq-breakpoints-default-key: 'medium';
+
+@import 'path/to/node_modules/@rm-labo/mq-scss/_mq.scss';
+</code></pre>
+        </section>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section__title">Examples</h2>
+      <div class="wrapper">
+        <section class="sub-section">
+          <p class="section__text">Set the argument to <code>$mq-breakpoints</code> property.</p>
+
+          <div class="debug-box-wrap">
+            <div class="box" id="box-mq-up"><span>#box-mq-up</span></div>
+            <div class="box" id="box-mq-down"><span>#box-mq-down</span></div>
+          </div>
+          <pre><code class="language-scss">// MOBILE FIRST POLICY
+div#box-mq-up {
+  background: red; // ~ 599px
+  @include mqUp('sm') { background: orange; } // 600px and up
+  @include mqUp('md') { background: green; } // 900px and up
+  @include mqUp('lg') { background: blue; } // 1200px and up
+  @include mqUp('xl') { background: purple; } // 1800px and up
+}
+
+// DESKTOP FIRST POLICY
+div#box-mq-down {
+  background: red; // 1800px ~
+  @include mqDown('xl') { background: purple; } // ~ 1799px
+  @include mqDown('lg') { background: blue; } // ~ 1199px
+  @include mqDown('md') { background: green; } // ~ 899px
+  @include mqDown('sm') { background: orange; } // ~ 599px
+}
+</code></pre>
+
+<div class="debug-box-wrap">
+  <div class="box" id="box-mq-between"><span>#box-mq-between</span></div>
+</div>
+<pre><code class="language-scss">// SPECIFY BY RANGE 
+div#box-mq-between {
+  background: red; // ~ 599px , 900px ~ 1199px , 1800px ~
+  @include mqBetween('sm', 'md') { background: green; } // 600px ~ 899px
+  @include mqBetween('lg', 'xl') { background: blue; } // 1200px ~ 1799px
+}
+</code></pre>
+
+        </section>
+        <section class="sub-section">
+          <p class="section__text">With no arguments, you can simply write with one breakpoint. <br>
+          <code>$mq-breakpoints-default-key</code> 's value applies.<br>
+          The argument of <code>mqBetween()</code> cannot be omitted.</p>
+
+          <div class="debug-box-wrap">
+            <div class="box" id="box-mq-up-df"><span>#box-mq-up-df</span></div>
+            <div class="box" id="box-mq-down-df"><span>#box-mq-down-df</span></div>
+          </div>
+          <pre><code class="language-scss">// mqUp()
+div#box-mq-up-df {
+  background: red;
+  @include mqUp() { background: green; } // 900px (default: md) and up 
+}
+
+// mqDown()
+div#box-mq-down-df {
+  background: red;
+  @include mqDown() { background: green; } // 899px (default: md) and down 
+}
+</code></pre>        
+
+        </section>
+        <section class="sub-section">
+          <p class="section__text">
+            It is also possible to directly specify a free px number as an argument. 
+          </p>
+
+          <div class="debug-box-wrap">
+            <div class="box" id="box-mq-up-626">
+              <span>#box-mq-up-626</span>
+            </div>
+            <div class="box" id="box-mq-down-782">
+              <span>#box-mq-down-782</span>
+            </div>
+          </div>
+          <pre><code class="language-scss">div#box-mq-up-626 {
+  background: red; 
+  @include mqUp(626px) { background: green; } // 626px and up 
+}
+
+div#box-mq-down-782 {
+  background: red;
+  @include mqDown(782px) { background: green; } // 782px and down 
+}
+</code></pre>
+
+          <p class="section__text">
+            There is no problem if mixed with the key name.<br>
+            In the case of mqBetween, it doesn't matter even if the size of the argument is reversed.
+          </p>
+
+          <div class="debug-box-wrap">
+            <div class="box" id="box-mq-bw-l-n">
+              <span>#box-mq-bw-l-n</span>
+            </div>
+            <div class="box" id="box-mq-bw-n-n">
+              <span>#box-mq-bw-n-n</span>
+            </div>
+          </div>
+<pre><code class="language-scss">div#box-mq-bw-l-n {
+  background: red; // ~ 599px , 1600px  ~
+  @include mqBetween('sm', 1600px) { background: green;} // 600px ~ 1599px 
+}
+
+div#box-mq-bw-n-n {
+  background: red; // ~ 849px , 1234px ~
+  @include mqBetween(1234px, 850px) { background: green;} // 850px ~ 1233px 
+}
+</code></pre>
+
+        </section>
+        
+        <p class="section__text">
+          For the height, you can use the following <code>@mixin</code>.
+        </p>
+
+        <div class="debug-box-wrap">
+          <div class="box" id="box-mq-h-up">
+            <span>#box-mq-h-up</span>
+          </div>
+          <div class="box" id="box-mq-h-down">
+            <span>#box-mq-h-down</span>
+          </div>
+        </div>
+        <pre><code class="language-scss">div#box-mq-h-up {
+  background: red;
+  @include mqHeightUp('sm') { background: orange; }
+  @include mqHeightUp(900px) { background: green; }
+  @include mqHeightUp('lg') { background: blue; }
+  @include mqHeightUp('xl') { background: purple; }
+}
+
+div#box-mq-h-down {
+  background: red;
+  @include mqHeightDown('xl') { background: purple; }
+  @include mqHeightDown(1200px) { background: blue; }
+  @include mqHeightDown('md') { background: green; }
+  @include mqHeightDown('sm') { background: orange; }
+}
+</code></pre>        
+
+<div class="debug-box-wrap">
+  <div class="box" id="box-mq-h-bw">
+    <span>#box-mq-h-bw</span>
+  </div>
+</div>
+<pre><code class="language-scss">div#box-mq-h-bw {
+  background: red; // ~ 599px , 900px ~ 1199px , 1800px ~
+  @include mqHeightBetween('sm', 'md') { background: green; } // 600px ~ 899px
+  @include mqHeightBetween('lg', 'xl') { background: blue; } // 1200px ~ 1799px
+}
+</code></pre>        
+
+        <p class="section__text">
+          You can also write in "kebab-case".
+        </p>
+
+<pre><code class="language-scss">// kebab-case (same as camelCase)
+.class-name {
+  @include mq-height-up('sm') { /* 600px and up */ }
+  @include mq-height-up('md') { /* 900px and up */ }
+  @include mq-height-up('lg') { /* 1200px and up */ }
+  @include mq-height-up('xl') { /* 1800px and up */ }
+
+  @include mq-height-down('xl') { /* 1799px and down */ }
+  @include mq-height-down('lg') { /* 1199px and down */ }
+  @include mq-height-down('md') { /* 899px and down */ }
+  @include mq-height-down('sm') { /* 599px and down */ }
+
+  @include mq-height-between('sm', 'md') { /* 600px ~ 899px */ }
+  @include mq-height-between('sm', 'lg') { /* 600px ~ 1199px */ }
+  @include mq-height-between('md', 'lg') { /* 900px ~ 1199px */ }
+  @include mq-height-between('lg', 'xl') { /* 1200px ~ 1799px */ }
+}
+</code></pre>        
+
+        <p class="section__text">
+          It is also possible to specify the "width" if you want to use it together with the "height".
+        </p>
+
+<pre><code class="language-scss">.class-name {
+  // camelCase
+  @include mqWidthUp() { } // same as mqUp() 
+  @include mqWidthDown() { } // same as mqDown()
+  @include mqWidthBetween('sm', 'md') { } // same as mqWidthBetween('sm', 'md')
+
+  // kebab-case
+  @include mq-width-up() { } // same as mq-up()
+  @include mq-width-down() { } // same as mq-down()
+  @include mq-width-between('sm', 'md') { } // same as mq-between('sm', 'md')
+}
+</code></pre>        
+
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section__title">Licence</h2>
+      <div class="wrapper">
+        <p class="section__text">
+          Licensed under MIT license.<br />
+          You are free to use for your personal or commercial projects.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section__title">Release notes</h2>
+      <div class="wrapper">
+        <table class="table-basic">
+          <thead>
+            <tr>
+              <th style="width:30%;">version</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>ver 1.0.0</th>
+              <td>launch</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <small>made by <a href="https://rm-labo.com/" target="_blank">@rm-labo</a></small>
+    </footer>
+
+    <script src="./ts/index.ts"></script>
+  </body>
+</html>
