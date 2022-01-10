@@ -1,9 +1,11 @@
+@use "../globals" as g;
+
 .main-section {
   width: 100%;
   padding: 6em 1em 7em;
   text-align: center;
-  color: $color-main-section-text;
-  background: $color-main-section-bg;
+  color: g.$color-main-section-text;
+  background: g.$color-main-section-bg;
   
 
   &__title {
@@ -48,9 +50,9 @@
     }
 
     &:hover {
-      color: $color-bg;
-      background-color: rgba($color-text, 1);
-      border: 2px solid rgba($color-text, 1);
+      color: g.$color-bg;
+      background-color: rgba(g.$color-text, 1);
+      border: 2px solid rgba(g.$color-text, 1);
     }
   }
 }
