@@ -22,6 +22,10 @@ You can import your scss project root.
 
 ```scss
 
+// scss
+@use 'path/to/node_modules/@rm-labo/mq-scss/_mq.scss' as *; // or @forward 
+
+// legacy 
 @import 'path/to/node_modules/@rm-labo/mq-scss/_mq.scss';
 
 ```
@@ -78,7 +82,22 @@ Declare before `@import '_mq.scss'`.
 Specify one of the property names of `$mq-breakpoints` for `$mq-breakpoints-default-key`.
 
 ```scss
-// override example
+// override example 
+@use 'path/to/node_modules/@rm-labo/mq-scss/_mq.scss' as * with (
+  $mq-breakpoints: (
+    micro: 320px,
+    small: 620px,
+    medium: 840px, // default
+    large: 1280px,
+    extra: 1900px,
+    // .. Add as many as you like ..
+  ),
+  $mq-breakpoints-default-key: 'medium',
+);
+```
+
+```scss
+// legacy
 $mq-breakpoints: (
   micro: 320px,
   small: 620px,

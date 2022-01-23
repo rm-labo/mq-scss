@@ -45,6 +45,9 @@
       <p class="section__text">you can import your scss project root.</p>
 
 <pre><code class="language-scss">// scss
+@use 'path/to/node_modules/@rm-labo/mq-scss/_mq.scss' as *; // or @forward 
+
+// legacy 
 @import 'path/to/node_modules/@rm-labo/mq-scss/_mq.scss';</code></pre>
 
       <p class="section__text">If your build tool processes CSS from your JavaScript entry point, <br>you can also import the stylesheet directly as modules</p>
@@ -127,7 +130,21 @@ $mq-breakpoints-default-key: 'md' !default;
             Declare before <code>@import '_mq.scss'</code>. <br>
             Specify one of the property names of <code>$mq-breakpoints</code> for <code>$mq-breakpoints-default-key</code>.
           </p>
-          <pre><code class="language-scss">// override example
+          <pre><code class="language-scss">// override example 
+@use 'path/to/node_modules/@rm-labo/mq-scss/_mq.scss' as * with (
+  $mq-breakpoints: (
+    micro: 320px,
+    small: 620px,
+    medium: 840px, // default
+    large: 1280px,
+    extra: 1900px,
+    // .. Add as many as you like ..
+  ),
+  $mq-breakpoints-default-key: 'medium',
+);
+</code></pre>
+<br>
+<pre><code class="language-scss">// legacy
 $mq-breakpoints: (
   micro: 320px,
   small: 620px,
