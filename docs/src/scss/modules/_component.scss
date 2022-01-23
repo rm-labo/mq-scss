@@ -1,3 +1,5 @@
+@use "../globals" as g;
+
 .section {
   width: 100%;
   padding-top: 3em;
@@ -22,7 +24,7 @@
     line-height: 1.6;
 
     code.hljs {
-      background: $color-text;
+      background: g.$color-text;
       font-size: 1.1rem;
       padding: 1.5em 1.5em;
       font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono,
@@ -48,7 +50,7 @@
 }
 
 .table-basic {
-  $table-border: $color-text;
+  $table-border: g.$color-text;
   margin: 1em 0;
   width: 100%;
   font-size: 1.4rem;
@@ -73,8 +75,8 @@
   }
   thead {
     tr {
-      background-color: rgba($color-text, 1);
-      color: $color-bg;
+      background-color: rgba(g.$color-text, 1);
+      color: g.$color-bg;
       th {
       }
       td {
@@ -83,9 +85,9 @@
   }
   tbody {
     tr {
-      background-color: rgba($color-bg, 0.5);
+      background-color: rgba(g.$color-bg, 0.5);
       th {
-        background-color: rgba($color-text, 0.08);
+        background-color: rgba(g.$color-text, 0.08);
       }
       td {
       }

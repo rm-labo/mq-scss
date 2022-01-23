@@ -1,16 +1,10 @@
-@import '../../node_modules/highlight.js/scss/monokai.scss';
-@import '../../node_modules/@fortawesome/fontawesome-free/css/all.css';
+@use '../../node_modules/highlight.js/scss/monokai.scss';
 
-@import './modules/_reset.scss';
-@import './modules/_variables.scss';
-@import './modules/_base.scss';
+@use './modules/_reset.scss';
+@use './modules/_base.scss';
 
-@import '../../node_modules/@rm-labo/mq-scss/_mq.scss';
-
-@import './modules/_layout.scss';
-@import './modules/_component.scss';
-@import './modules/_project.scss';
-@import './modules/_debug.scss';
-
-
+@use './modules/_layout.scss';
+@use './modules/_component.scss';
+@use './modules/_project.scss';
+@use './modules/_debug.scss';
 
