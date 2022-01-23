@@ -1,4 +1,7 @@
-<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/main.f2284d97.css"><title>mq-scss</title></head><body> <div class="debug-bar"> <span class="text">window [ width : </span> <span class="number" data-debug-window-width=""></span> <span class="text"> px / height : </span> <span class="number" data-debug-window-height=""></span> <span class="text"> px ] </span> </div> <section class="main-section"> <h1 class="main-section__title">mq-scss</h1> <p class="main-section__text">Media Queries Helper Functions for scss.</p> <a class="main-section__btn" href="https://www.npmjs.com/package/@rm-labo/mq-scss" target="_blank"> <span><i class="fa-npm fab"></i></span> <span> <small>GETTING STARTED</small> </span> </a> <p class="main-section__text">The latest source code is available on <a href="https://github.com/rm-labo/mq-scss">GitHub</a>.</p> </section> <section class="section"> <div class="wrapper"> <p class="section__text"> Javascript version of the package with the similar concept is <a href="https://github.com/rm-labo/mq-js">here</a> </p> </div> </section> <section class="section"> <h2 class="section__title">Install</h2> <div class="wrapper"> <pre><code class="language-bash">$ npm i -D @rm-labo/mq-scss</code></pre> <p class="section__text">you can import your scss project root.</p> <pre><code class="language-scss">// scss
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/main.8b934cb7.css"><title>mq-scss</title></head><body> <div class="debug-bar"> <span class="text">window [ width : </span> <span class="number" data-debug-window-width=""></span> <span class="text"> px / height : </span> <span class="number" data-debug-window-height=""></span> <span class="text"> px ] </span> </div> <section class="main-section"> <h1 class="main-section__title">mq-scss</h1> <p class="main-section__text">Media Queries Helper Functions for scss.</p> <a class="main-section__btn" href="https://www.npmjs.com/package/@rm-labo/mq-scss" target="_blank"> <span><i class="iconify" data-icon="fa-brands:npm"></i></span> <span> <small>GETTING STARTED</small> </span> </a> <p class="main-section__text">The latest source code is available on <a href="https://github.com/rm-labo/mq-scss">GitHub</a>.</p> </section> <section class="section"> <div class="wrapper"> <p class="section__text"> Javascript version of the package with the similar concept is <a href="https://github.com/rm-labo/mq-js">here</a> </p> </div> </section> <section class="section"> <h2 class="section__title">Install</h2> <div class="wrapper"> <pre><code class="language-bash">$ npm i -D @rm-labo/mq-scss</code></pre> <p class="section__text">you can import your scss project root.</p> <pre><code class="language-scss">// scss
+@use 'path/to/node_modules/@rm-labo/mq-scss/_mq.scss' as *; // or @forward 
+
+// legacy 
 @import 'path/to/node_modules/@rm-labo/mq-scss/_mq.scss';</code></pre> <p class="section__text">If your build tool processes CSS from your JavaScript entry point, <br>you can also import the stylesheet directly as modules</p> <pre><code class="language-javascript">// js
 import '@rm-labo/mq-scss/_mq.scss'</code></pre> </div> </section> <section class="section"> <h2 class="section__title">Usage</h2> <div class="wrapper"> <p class="section__text">Three @mixins are available.<br>You can use your favorite 'camel case' or 'kebab case'.</p> <pre><code class="language-scss">// camelCase
 @include mqUp($bp) {}
@@ -17,7 +20,19 @@ import '@rm-labo/mq-scss/_mq.scss'</code></pre> </div> </section> <section class
 ) !default;
 
 $mq-breakpoints-default-key: 'md' !default;
-</code></pre> </section> <section class="sub-section"> <h3 class="sub-section__title">override default setting values</h3> <p class="section__text"> You can overwrite <code>$mq-breakpoints-default-key</code> and <code>$mq-breakpoints</code>.<br> Declare before <code>@import '_mq.scss'</code>. <br> Specify one of the property names of <code>$mq-breakpoints</code> for <code>$mq-breakpoints-default-key</code>. </p> <pre><code class="language-scss">// override example
+</code></pre> </section> <section class="sub-section"> <h3 class="sub-section__title">override default setting values</h3> <p class="section__text"> You can overwrite <code>$mq-breakpoints-default-key</code> and <code>$mq-breakpoints</code>.<br> Declare before <code>@import '_mq.scss'</code>. <br> Specify one of the property names of <code>$mq-breakpoints</code> for <code>$mq-breakpoints-default-key</code>. </p> <pre><code class="language-scss">// override example 
+@use 'path/to/node_modules/@rm-labo/mq-scss/_mq.scss' as * with (
+  $mq-breakpoints: (
+    micro: 320px,
+    small: 620px,
+    medium: 840px, // default
+    large: 1280px,
+    extra: 1900px,
+    // .. Add as many as you like ..
+  ),
+  $mq-breakpoints-default-key: 'medium',
+);
+</code></pre> <br> <pre><code class="language-scss">// legacy
 $mq-breakpoints: (
   micro: 320px,
   small: 620px,
@@ -130,4 +145,4 @@ div#box-mq-h-down {
   @include mq-width-down() { } // same as mq-down()
   @include mq-width-between('sm', 'md') { } // same as mq-between('sm', 'md')
 }
-</code></pre> </div> </section> <section class="section"> <h2 class="section__title">Licence</h2> <div class="wrapper"> <p class="section__text"> Licensed under MIT license.<br> You are free to use for your personal or commercial projects. </p> </div> </section> <section class="section"> <h2 class="section__title">Release notes</h2> <div class="wrapper"> <table class="table-basic"> <thead> <tr> <th style="width:30%;">version</th> <th>Description</th> </tr> </thead> <tbody> <tr> <th>ver 1.0.0</th> <td>launch</td> </tr> </tbody> </table> </div> </section> <footer class="footer"> <small>made by <a href="https://rm-labo.com/" target="_blank">@rm-labo</a></small> </footer> <script src="/ts.68176204.js"></script> </body></html>
+</code></pre> </div> </section> <section class="section"> <h2 class="section__title">Licence</h2> <div class="wrapper"> <p class="section__text"> Licensed under MIT license.<br> You are free to use for your personal or commercial projects. </p> </div> </section> <section class="section"> <h2 class="section__title">Release notes</h2> <div class="wrapper"> <table class="table-basic"> <thead> <tr> <th style="width:30%;">version</th> <th>Description</th> </tr> </thead> <tbody> <tr> <th>ver 1.0.0</th> <td>launch</td> </tr> </tbody> </table> </div> </section> <footer class="footer"> <small>made by <a href="https://rm-labo.com/" target="_blank">@rm-labo</a></small> </footer> <script src="/ts.36f8cb02.js"></script> </body></html>
