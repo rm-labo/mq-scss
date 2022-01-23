@@ -1,6 +1,6 @@
 {
   "name": "@rm-labo/mq-scss",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Media Queries Helper Functions for scss.",
   "main": "_mq.scss",
   "scripts": {},
