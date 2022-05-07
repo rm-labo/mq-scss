@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "link": "cd ../ && npm link && cd ./docs-src && npm link @rm-labo/mq-scss",
-    "build": "npm run clean && npm run lint:fix && parcel build src/index.html -d ../docs --no-source-maps",
+    "build": "npm run clean && npm run lint:fix && parcel build src/index.html --public-url https://rm-labo.github.io/mq-scss/ -d ../docs --no-source-maps",
     "dev": "parcel src/index.html -d ../docs",
     "clean": "rimraf ../docs/**/*",
     "lint": "eslint --ignore-path .eslintignore .",
